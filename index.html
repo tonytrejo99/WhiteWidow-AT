@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Author: Anthony Trejo
+    Project: WhiteWidow
+    
+    All Rights Rserved.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>White Widow</title>
+</head>
+
+<body style="background-color:rgb(245, 157, 157);"></body>
+
+<body>
+    <h1>WhiteWidow</h1>
+    <h3>In Speed We Trust</h3>
+
+    <p id="demo"></p>
+
+<script>
+const d = new Date();
+document.getElementById("demo").innerHTML = d;
+</script>
+    <br /><br />
+    <p>WhiteWidow is a 1990 Chevy Silverado single cab with a 400SS clone body conversion. Originally a V6 pickup, WhiteWidow got a 
+        5.7L 350 V8 swapped with a five speed manual transmission. Saddly, WhiteWidow only has a K&N Intake with Flowmasters Exhaust.
+        Sitting on 15X8 in the font and 15X10 in the rear, WhiteWidow weights aproxx 3800 lbs. A freshly new pearl white paint job with
+        red bedliner, WhiteWidow has the attention of all cops in the area. 
+    </p>
+    <br /><br />
+    <h2>More Specs</h2>
+    <ul>
+        <li>4 inch drop front</li>
+        <li>6 inch drop on the rear</li>
+        <li>Air suspension</li>
+        <li>2 inch cowl hood</li>
+        <li>Red alcantara headliner</li>
+        <li>Black under coat on chasis</li>
+        <li>Top speed - 125 mph</li>
+      </ul>
+
+      <br /><br />
+
+      <img src="frontEnd.JPG" alt="frontEnd" width="300" height="300">
+      <img src="obsFront.JPG" alt="front" width="350" height="300">
+      <img src="obsLeftWheel.JPG" alt="obsLeftWheel" width="250" height="300">
+      <img src="obsRearShot.JPG" alt="obsRearShot" width="350" height="300">
+      <img src="obsRearTire.JPG" alt="obsRearTire" width="250" height="300">
+      <img src="obsSideShot.JPG" alt="obsSideShot" width="350" height="300">
+      <img src="obsSideSHotX2.JPG" alt="obsSideShotX2" width="350" height="300">
+    
+      <h2>Quiz</h2>
+      <p>Here you will test your knowledge over the reading from above. From the drop down menu, select the best answer. Good luck!</p>
+
+      <br /><br />
+
+    <label>What year did WhiteWidow come out?</label><br />
+    <select id="q1">
+        <option value="5">2017</option>
+        <option value="4">1991</option>
+        <option value="3">1990</option>
+        <option value="2">2003</option>
+        <option value="1">1997</option>
+    </select>
+
+    <br /><br />
+
+    <label>What suspension drop does WhiteWidow have?</label><br />
+    <select id="q2">
+        <option value="5">4/6 Drop</option>
+        <option value="4">2/3 Drop</option>
+        <option value="3">5/7 Drop</option>
+        <option value="2">4/5 Drop</option>
+        <option value="1">Stock Height</option>
+    </select>
+
+    <br /><br />
+
+    <label>What engine does WhiteWidow have?</label><br />
+    <select id="q3">
+        <option value="5">4.3L V6</option>
+        <option value="4">5.7L Hemi</option>
+        <option value="3">5.3L Vortec</option>
+        <option value="2">5.7L 350</option>
+        <option value="1">5.7L LS1</option>
+    </select>
+
+    <br /><br />
+
+    <label>What is WhiteWidow top speed?</label><br />
+    <select id="q4">
+        <option value="5">>80</option>
+        <option value="4">85-120</option>
+        <option value="3">~125</option>
+        <option value="2">140-160</option>
+        <option value="1">180+</option>
+    </select>
+
+    <br /><br />
+
+    <label>What color is WhiteWidow?</label><br />
+    <select id="q5">
+        <option value="5">White</option>
+        <option value="4">Pearl White</option>
+        <option value="3">Black</option>
+        <option value="2">Red</option>
+        <option value="1">Green</option>
+    </select>
+
+
+    <br /><br /><br />
+    <button onclick="calculateCompatibility()">Calculate Compatibility</button>
+    <p id="compatibility"></p>
+
+    <p>Last updated: December 13, 2021</p>
+<script>
+console.log("Starting WhiteWidow Quiz...");
+
+function calculateCompatibility() {
+    console.log("calculateCompatibility()");
+
+    const DESIRED_RESPONSE = [
+        3, /* disagree*/
+        5, /* agree */
+        2, /* neutral */ 
+        3, /* Strongly Agree */
+        4, /* neutral */ 
+    ]
+
+    const ANSWER_WEIGHT = [
+        2, // 
+        2, // 
+        1, // 
+        1, // 
+        1, // 
+    ]
+
+    const MAX_SCORE = 35
+
+    // Get the current values of the dropdown controls.
+    let question1Response = document.getElementById('q1').selectedOptions[0].value; 
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+    // OPTIONAL: Log the values associated with questions 1 through 5 to the console.
+    console.log("Question 1 Answers:");
+    console.log(document.getElementById('q1').selectedOptions[0].text);
+    console.log(document.getElementById('q1').selectedOptions[0].value);
+    console.log(question1Response);
+
+    console.log("Question 2 Answers:");
+    console.log(document.getElementById('q2').selectedOptions[0].text);
+    console.log(document.getElementById('q2').selectedOptions[0].value);
+    console.log(question2Response);
+
+    // Calculate compatibiity scores.
+    let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    question1Compatibility = question1Compatibility * ANSWER_WEIGHT[0];
+    let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    question2Compatibility = question2Compatibility * ANSWER_WEIGHT[1];
+    let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    question3Compatibility = question3Compatibility * ANSWER_WEIGHT[2];
+    let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    question4Compatibility = question4Compatibility * ANSWER_WEIGHT[3];
+    let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+    question5Compatibility = question5Compatibility * ANSWER_WEIGHT[4];
+
+
+
+    console.log("c1="+question1Compatibility);
+    console.log("c2="+question2Compatibility);
+    console.log("c3="+question3Compatibility);
+    console.log("c4="+question3Compatibility);
+    console.log("c5="+question3Compatibility);
+
+    // Calculate total compatibility.
+    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+    totalCompatibility *= 100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+    console.log("totalCompatibility="+ totalCompatibility);
+
+
+    document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompatibility;
+}
+
+</script>
+
+</body>
+</html>
